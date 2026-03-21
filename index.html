@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Castle Wealth — Independent Wealth Management</title>
+<meta name="description" content="Independent wealth planning for affluent individuals and growing businesses. Pensions, inheritance tax planning, investment management, and corporate services.">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --deep-charcoal:#2C3E50;
+  --royal-blue:#1A5490;
+  --gold:#D4AF37;
+  --ivory:#F5F5F0;
+  --warm-grey:#7F8C8D;
+  --bg-light:#F8F8F5;
+  --shadow-sm:0 2px 8px rgba(44,62,80,.06);
+  --shadow-md:0 8px 24px rgba(44,62,80,.08);
+  --shadow-lg:0 16px 48px rgba(44,62,80,.10);
+  --radius:6px;
+  --serif:Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;
+  --transition:all .35s cubic-bezier(.16,1,.3,1);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:var(--sans);
+  color:var(--deep-charcoal);
+  background:var(--ivory);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2;letter-spacing:-.01em}
+a{color:var(--royal-blue);text-decoration:none;transition:var(--transition)}
+a:hover{color:var(--gold)}
+img{max-width:100%;height:auto;display:block}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.btn-primary{
+  display:inline-block;
+  background:var(--royal-blue);
+  color:var(--ivory);
+  padding:14px 32px;
+  border:2px solid var(--royal-blue);
+  border-radius:var(--radius);
+  font-family:var(--sans);
+  font-size:.95rem;
+  font-weight:600;
+  letter-spacing:.02em;
+  cursor:pointer;
+  transition:var(--transition);
+}
+.btn-primary:hover{
+  border-color:var(--gold);
+  background:var(--royal-blue);
+  color:var(--ivory);
+  transform:translateY(-1px);
+  box-shadow:0 4px 16px rgba(26,84,144,.2);
+}
+.btn-primary:active{transform:translateY(0);box-shadow:none}
+.section-label{
+  font-family:var(--sans);
+  font-size:.8rem;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:12px;
+  display:block;
+}
+/* ─── NAVIGATION ─── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(248,248,245,.92);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(44,62,80,.06);
+  transition:var(--transition);
+}
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  max-width:1200px;margin:0 auto;padding:0 24px;
+  height:72px;
+}
+.nav-brand{
+  font-family:var(--serif);
+  font-size:1.35rem;
+  color:var(--deep-charcoal);
+  font-weight:400;
+  letter-spacing:.01em;
+}
+.nav-brand strong{font-weight:700;color:var(--royal-blue)}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{
+  font-size:.9rem;font-weight:500;color:var(--deep-charcoal);
+  position:relative;padding:4px 0;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;
+  background:var(--gold);transition:var(--transition);
+}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links a:hover{color:var(--deep-charcoal)}
+.nav-cta{
+  padding:10px 22px;font-size:.85rem;
+  background:var(--royal-blue);color:var(--ivory);
+  border:1.5px solid var(--royal-blue);border-radius:var(--radius);
+  font-weight:600;cursor:pointer;transition:var(--transition);
+}
+.nav-cta:hover{border-color:var(--gold);transform:translateY(-1px)}
+.hamburger{
+  display:none;flex-direction:column;gap:5px;
+  background:none;border:none;cursor:pointer;padding:8px;
+}
+.hamburger span{display:block;width:24px;height:2px;background:var(--deep-charcoal);border-radius:2px;transition:var(--transition)}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:100dvh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding-top:72px;
+  background:var(--ivory);
+  overflow:hidden;
+}
+.hero-content{
+  padding:64px 48px 64px 0;
+  margin-left:max(24px,calc((100vw - 1200px)/2 + 24px));
+  max-width:580px;
+}
+.hero-content h1{
+  font-size:clamp(2.2rem,4vw,3.4rem);
+  color:var(--deep-charcoal);
+  margin-bottom:24px;
+  line-height:1.15;
+}
+.hero-content h1 span{color:var(--royal-blue)}
+.hero-subtitle{
+  font-size:1.15rem;
+  color:var(--warm-grey);
+  font-weight:500;
+  margin-bottom:16px;
+  line-height:1.5;
+}
+.hero-body{
+  font-size:1rem;
+  color:var(--warm-grey);
+  line-height:1.7;
+  max-width:50ch;
+  margin-bottom:32px;
+}
+.hero-image{
+  position:relative;
+  height:100%;
+  min-height:500px;
+  overflow:hidden;
+}
+.hero-image img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+.hero-image::before{
+  content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to right,var(--ivory) 0%,rgba(245,245,240,.3) 30%,transparent 60%);
+}
+.hero-creds{
+  display:flex;gap:32px;margin-top:40px;
+  padding-top:24px;border-top:1px solid rgba(44,62,80,.08);
+}
+.hero-cred{font-size:.82rem;color:var(--warm-grey);line-height:1.4}
+.hero-cred strong{display:block;font-size:1.4rem;color:var(--deep-charcoal);font-family:var(--serif);margin-bottom:2px}
+
+/* ─── SERVICES ─── */
+.services{padding:96px 0;background:var(--bg-light)}
+.services-header{max-width:520px;margin-bottom:56px}
+.services-header h2{font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:16px}
+.services-header p{color:var(--warm-grey);font-size:1.05rem;line-height:1.6}
+.services-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:24px;
+}
+.service-card{
+  background:#fff;
+  border:1px solid rgba(44,62,80,.06);
+  border-radius:8px;
+  padding:40px 36px;
+  transition:var(--transition);
+  position:relative;
+  overflow:hidden;
+}
+.service-card::before{
+  content:'';position:absolute;top:0;left:0;width:3px;height:0;
+  background:var(--gold);transition:height .4s cubic-bezier(.16,1,.3,1);
+}
+.service-card:hover::before{height:100%}
+.service-card:hover{
+  box-shadow:var(--shadow-md);
+  transform:translateY(-2px);
+}
+.service-icon{
+  width:48px;height:48px;
+  border-radius:8px;
+  background:rgba(26,84,144,.06);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;
+}
+.service-icon svg{width:24px;height:24px;stroke:var(--royal-blue);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.service-card h3{font-size:1.25rem;margin-bottom:12px;color:var(--deep-charcoal)}
+.service-card p{font-size:.95rem;color:var(--warm-grey);line-height:1.6;margin-bottom:16px;max-width:45ch}
+.service-link{
+  font-size:.88rem;font-weight:600;color:var(--royal-blue);
+  display:inline-flex;align-items:center;gap:6px;
+}
+.service-link svg{width:14px;height:14px;transition:transform .3s ease}
+.service-link:hover svg{transform:translateX(3px)}
+
+/* ─── WHY SECTION ─── */
+.why{padding:96px 0;background:var(--ivory)}
+.why-inner{
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:64px;
+  align-items:center;
+}
+.why-content h2{font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:20px}
+.why-content>p{color:var(--warm-grey);font-size:1.05rem;line-height:1.6;max-width:42ch;margin-bottom:32px}
+.why-features{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.why-feature{padding:28px 24px;border-radius:8px;background:var(--bg-light);transition:var(--transition)}
+.why-feature:hover{box-shadow:var(--shadow-sm);transform:translateY(-1px)}
+.why-feature-icon{
+  width:40px;height:40px;border-radius:6px;
+  background:rgba(212,175,55,.1);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px;
+}
+.why-feature-icon svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.why-feature h4{font-size:1.05rem;margin-bottom:8px;color:var(--deep-charcoal)}
+.why-feature p{font-size:.9rem;color:var(--warm-grey);line-height:1.55}
+
+/* ─── TESTIMONIALS ─── */
+.testimonials{padding:96px 0;background:var(--bg-light)}
+.testimonials-header{max-width:480px;margin-bottom:48px}
+.testimonials-header h2{font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:12px}
+.testimonials-header p{color:var(--warm-grey);font-size:1.05rem}
+.testimonial-carousel{position:relative;overflow:hidden}
+.testimonial-track{display:flex;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.testimonial-slide{min-width:100%;display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:0 4px}
+.testimonial-card{
+  background:#fff;
+  border:1px solid rgba(44,62,80,.06);
+  border-radius:8px;
+  padding:36px 32px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  transition:var(--transition);
+}
+.testimonial-card:hover{box-shadow:var(--shadow-sm)}
+.testimonial-quote{
+  font-size:1rem;color:var(--deep-charcoal);line-height:1.7;
+  margin-bottom:24px;font-style:italic;
+  position:relative;padding-left:20px;
+  border-left:2px solid var(--gold);
+}
+.testimonial-author{font-size:.85rem;color:var(--warm-grey);font-weight:500}
+.testimonial-author strong{display:block;color:var(--deep-charcoal);font-weight:600;font-style:normal;margin-bottom:2px}
+.carousel-controls{
+  display:flex;align-items:center;gap:16px;margin-top:32px;
+}
+.carousel-btn{
+  width:44px;height:44px;border-radius:50%;
+  border:1.5px solid rgba(44,62,80,.15);background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:var(--transition);
+}
+.carousel-btn:hover{border-color:var(--royal-blue);background:var(--royal-blue)}
+.carousel-btn:hover svg{stroke:#fff}
+.carousel-btn svg{width:18px;height:18px;stroke:var(--deep-charcoal);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.carousel-dots{display:flex;gap:8px;margin-left:8px}
+.carousel-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(44,62,80,.15);border:none;
+  cursor:pointer;transition:var(--transition);
+}
+.carousel-dot.active{background:var(--royal-blue);transform:scale(1.15)}
+
+/* ─── PROCESS ─── */
+.process{padding:96px 0;background:var(--ivory)}
+.process-header{max-width:480px;margin-bottom:56px}
+.process-header h2{font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:12px}
+.process-header p{color:var(--warm-grey);font-size:1.05rem}
+.process-steps{display:flex;flex-direction:column;gap:0}
+.process-step{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:400px;
+  overflow:hidden;
+  border-radius:8px;
+  background:#fff;
+  border:1px solid rgba(44,62,80,.06);
+  margin-bottom:24px;
+}
+.process-step:nth-child(even){direction:rtl}
+.process-step:nth-child(even) .process-step-content,
+.process-step:nth-child(even) .process-step-image{direction:ltr}
+.process-step-content{
+  padding:48px 44px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.step-number{
+  font-family:var(--serif);
+  font-size:3.5rem;
+  color:rgba(26,84,144,.08);
+  font-weight:700;
+  line-height:1;
+  margin-bottom:12px;
+}
+.process-step-content h3{font-size:1.5rem;margin-bottom:14px;color:var(--deep-charcoal)}
+.process-step-content p{font-size:.98rem;color:var(--warm-grey);line-height:1.7;max-width:44ch}
+.process-step-image{position:relative;overflow:hidden}
+.process-step-image img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 6s cubic-bezier(.16,1,.3,1);
+}
+.process-step:hover .process-step-image img{transform:scale(1.04)}
+.process-cta{text-align:left;margin-top:40px}
+.process-cta p{font-family:var(--serif);font-size:1.3rem;color:var(--deep-charcoal);margin-bottom:20px}
+
+/* ─── BOTTOM CTA ─── */
+.bottom-cta{
+  padding:80px 0;
+  background:var(--deep-charcoal);
+  position:relative;
+  overflow:hidden;
+}
+.bottom-cta::before{
+  content:'';position:absolute;top:-50%;right:-20%;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(26,84,144,.15),transparent 70%);
+  pointer-events:none;
+}
+.bottom-cta-inner{
+  display:grid;grid-template-columns:1.2fr .8fr;
+  gap:48px;align-items:center;
+}
+.bottom-cta h2{font-size:clamp(1.8rem,3vw,2.4rem);color:var(--ivory);margin-bottom:16px}
+.bottom-cta p{color:rgba(245,245,240,.65);font-size:1.05rem;line-height:1.6;max-width:48ch}
+.bottom-cta-action{text-align:right}
+.btn-gold{
+  display:inline-block;
+  background:transparent;color:var(--gold);
+  padding:16px 36px;
+  border:2px solid var(--gold);
+  border-radius:var(--radius);
+  font-family:var(--sans);font-size:1rem;font-weight:600;
+  cursor:pointer;transition:var(--transition);
+}
+.btn-gold:hover{background:var(--gold);color:var(--deep-charcoal);transform:translateY(-1px)}
+
+/* ─── FOOTER ─── */
+.footer{
+  background:var(--deep-charcoal);
+  border-top:1px solid rgba(212,175,55,.2);
+  padding:48px 0 32px;
+}
+.footer-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:24px;
+}
+.footer-brand{font-family:var(--serif);font-size:1.1rem;color:var(--ivory)}
+.footer-brand strong{color:rgba(212,175,55,.8)}
+.footer-links{display:flex;gap:24px;list-style:none}
+.footer-links a{font-size:.85rem;color:rgba(245,245,240,.5);transition:var(--transition)}
+.footer-links a:hover{color:var(--gold)}
+.footer-social a{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:50%;
+  border:1px solid rgba(245,245,240,.15);
+  transition:var(--transition);
+}
+.footer-social a:hover{border-color:var(--gold)}
+.footer-social svg{width:16px;height:16px;fill:rgba(245,245,240,.5)}
+.footer-social a:hover svg{fill:var(--gold)}
+.footer-bottom{
+  margin-top:32px;padding-top:24px;
+  border-top:1px solid rgba(245,245,240,.06);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:12px;
+}
+.footer-bottom p{font-size:.8rem;color:rgba(245,245,240,.35)}
+.footer-bottom a{color:rgba(245,245,240,.5)}
+.footer-bottom a:hover{color:var(--gold)}
+
+/* ─── MODAL ─── */
+.modal-overlay{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(44,62,80,.6);
+  backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;
+  transition:opacity .3s ease,visibility .3s ease;
+  padding:24px;
+}
+.modal-overlay.open{opacity:1;visibility:visible}
+.modal{
+  background:#fff;border-radius:12px;
+  max-width:540px;width:100%;
+  padding:48px 40px;
+  position:relative;
+  transform:translateY(16px) scale(.97);
+  transition:transform .35s cubic-bezier(.16,1,.3,1);
+  max-height:90vh;overflow-y:auto;
+}
+.modal-overlay.open .modal{transform:translateY(0) scale(1)}
+.modal-close{
+  position:absolute;top:16px;right:16px;
+  width:36px;height:36px;border-radius:50%;
+  border:none;background:var(--bg-light);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:var(--transition);
+}
+.modal-close:hover{background:rgba(44,62,80,.1)}
+.modal-close svg{width:16px;height:16px;stroke:var(--deep-charcoal);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.modal h2{font-size:1.5rem;margin-bottom:8px;color:var(--deep-charcoal)}
+.modal>p{font-size:.95rem;color:var(--warm-grey);line-height:1.6;margin-bottom:28px}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-size:.85rem;font-weight:600;color:var(--deep-charcoal);margin-bottom:6px}
+.form-group input,.form-group textarea{
+  width:100%;padding:12px 14px;
+  border:1.5px solid rgba(44,62,80,.12);
+  border-radius:var(--radius);
+  font-family:var(--sans);font-size:.95rem;
+  color:var(--deep-charcoal);
+  transition:var(--transition);
+  background:#fff;
+}
+.form-group input:focus,.form-group textarea:focus{
+  outline:none;border-color:var(--royal-blue);
+  box-shadow:0 0 0 3px rgba(26,84,144,.08);
+}
+.form-group textarea{resize:vertical;min-height:80px}
+.form-group .error-msg{font-size:.8rem;color:#c0392b;margin-top:4px;display:none}
+.form-group.has-error input,.form-group.has-error textarea{border-color:#c0392b}
+.form-group.has-error .error-msg{display:block}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.btn-submit{
+  width:100%;padding:14px;margin-top:8px;
+  background:var(--gold);color:var(--deep-charcoal);
+  border:2px solid var(--gold);border-radius:var(--radius);
+  font-family:var(--sans);font-size:.95rem;font-weight:600;
+  cursor:pointer;transition:var(--transition);
+}
+.btn-submit:hover{background:#c9a430;border-color:#c9a430;transform:translateY(-1px)}
+.btn-submit:active{transform:translateY(0)}
+.form-success{
+  text-align:center;padding:32px 0;display:none;
+}
+.form-success svg{width:56px;height:56px;stroke:var(--royal-blue);fill:none;stroke-width:1.5;margin:0 auto 16px}
+.form-success h3{font-size:1.3rem;margin-bottom:8px}
+.form-success p{color:var(--warm-grey);font-size:.95rem}
+
+/* ─── SCROLL ANIMATIONS ─── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1024px){
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-content{margin-left:0;padding:120px 24px 48px;max-width:100%}
+  .hero-image{min-height:360px}
+  .hero-image::before{background:linear-gradient(to bottom,var(--ivory) 0%,rgba(245,245,240,.2) 30%,transparent 60%)}
+  .services-grid{grid-template-columns:1fr 1fr}
+  .why-inner{grid-template-columns:1fr;gap:40px}
+  .why-content>p{max-width:none}
+  .process-step{grid-template-columns:1fr;min-height:auto}
+  .process-step:nth-child(even){direction:ltr}
+  .process-step-image{min-height:260px}
+  .bottom-cta-inner{grid-template-columns:1fr;text-align:center}
+  .bottom-cta-action{text-align:center}
+  .bottom-cta p{max-width:none}
+}
+@media(max-width:767px){
+  .nav-links{
+    position:fixed;top:72px;left:0;right:0;
+    background:rgba(248,248,245,.98);
+    backdrop-filter:blur(12px);
+    flex-direction:column;gap:0;padding:8px 0;
+    border-bottom:1px solid rgba(44,62,80,.06);
+    transform:translateY(-100%);opacity:0;
+    transition:var(--transition);pointer-events:none;
+    box-shadow:var(--shadow-md);
+  }
+  .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
+  .nav-links li{width:100%}
+  .nav-links a,.nav-links .nav-cta{
+    display:block;padding:14px 24px;font-size:.95rem;
+    border-radius:0;border:none;background:none;color:var(--deep-charcoal);
+  }
+  .nav-links .nav-cta{color:var(--royal-blue);font-weight:600}
+  .hamburger{display:flex}
+  .services-grid{grid-template-columns:1fr}
+  .why-features{grid-template-columns:1fr}
+  .testimonial-slide{grid-template-columns:1fr}
+  .testimonial-slide .testimonial-card:nth-child(2){display:none}
+  .hero-creds{gap:20px}
+  .hero-creds .hero-cred:last-child{display:none}
+  .form-row{grid-template-columns:1fr}
+  .footer-inner{flex-direction:column;text-align:center}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand" aria-label="Castle Wealth Home"><strong>Castle</strong> Wealth</a>
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" role="menubar">
+      <li role="none"><a href="#home" role="menuitem">Home</a></li>
+      <li role="none"><a href="#services" role="menuitem">Services</a></li>
+      <li role="none"><a href="#about" role="menuitem">About</a></li>
+      <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
+      <li role="none"><button class="nav-cta demo-trigger" role="menuitem">See Demo</button></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-content reveal">
+    <span class="section-label">Independent Wealth Management</span>
+    <h1>Build and Protect Your <span>Financial Fortress</span></h1>
+    <p class="hero-subtitle">Independent wealth planning for successful individuals and growing businesses who refuse to settle.</p>
+    <p class="hero-body">Whether you're protecting a lifetime of wealth or building a sustainable future for your business, complex financial decisions deserve expert guidance &mdash; simple advice, genuine independence, and service that genuinely serves you.</p>
+    <button class="btn-primary demo-trigger">See Demo</button>
+    <div class="hero-creds">
+      <div class="hero-cred"><strong>FCA</strong>Authorised &amp; Regulated</div>
+      <div class="hero-cred"><strong>5+</strong>Years Serving the Home Counties</div>
+      <div class="hero-cred"><strong>100%</strong>Independent Advice</div>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="images/hero-fortress.jpg" alt="Heritage stone architecture symbolising financial strength and protection" loading="eager">
+  </div>
+</section>
+
+<!-- Services -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <span class="section-label">What We Do</span>
+      <h2>Expert Planning, Tailored to You</h2>
+      <p>We specialise in four core areas that work together to build and protect your financial future.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Pensions &amp; Retirement</h3>
+        <p>Navigate complex pension options, maximise contributions, and plan your transition with confidence. We clarify the choices and build strategies aligned to your retirement vision.</p>
+        <a href="#" class="service-link demo-trigger">Learn More <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Inheritance Tax Planning</h3>
+        <p>Protect your legacy with tax-efficient structures that reflect your values. Your lifetime achievement shouldn't be diminished by inefficient planning.</p>
+        <a href="#" class="service-link demo-trigger">Learn More <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Investment Management</h3>
+        <p>Tailored portfolios aligned to your timeline and goals, not generic benchmarks. We match your investments to your actual vision.</p>
+        <a href="#" class="service-link demo-trigger">Learn More <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 7V5a4 4 0 0 0-8 0v2"/></svg>
+        </div>
+        <h3>Corporate &amp; SME Services</h3>
+        <p>Employee benefits, succession planning, and ownership structure optimisation. Growing businesses need strategies that scale with ambition.</p>
+        <a href="#" class="service-link demo-trigger">Learn More <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Castle Wealth -->
+<section class="why" id="about">
+  <div class="container">
+    <div class="why-inner">
+      <div class="why-content reveal">
+        <span class="section-label">Why Castle Wealth</span>
+        <h2>Built on Independence, Delivered with Care</h2>
+        <p>We combine institutional-grade expertise with the personal service of a genuinely independent firm. Your interests are never compromised.</p>
+      </div>
+      <div class="why-features">
+        <div class="why-feature reveal">
+          <div class="why-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h4>Genuinely Independent</h4>
+          <p>Uncompromised by product manufacturer agendas. Your interests come first, always.</p>
+        </div>
+        <div class="why-feature reveal">
+          <div class="why-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h4>Deep Expertise</h4>
+          <p>High-net-worth planning and business owner challenges are our speciality.</p>
+        </div>
+        <div class="why-feature reveal">
+          <div class="why-feature-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+          </div>
+          <h4>Proactive Stewardship</h4>
+          <p>We anticipate change rather than reacting to crisis. Your fortress stays fortified.</p>
+        </div>
+        <div class="why-feature reveal">
+          <div class="why-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h4>Complete Transparency</h4>
+          <p>Written plans with clear rationale. You always know why we recommend something.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials">
+  <div class="container">
+    <div class="testimonials-header reveal">
+      <span class="section-label">Client Stories</span>
+      <h2>Trusted by Families and Businesses</h2>
+      <p>Hear from clients whose financial futures we've helped build and protect.</p>
+    </div>
+    <div class="testimonial-carousel reveal" aria-label="Client testimonials">
+      <div class="testimonial-track" id="testimonialTrack">
+        <!-- Slide 1 -->
+        <div class="testimonial-slide">
+          <div class="testimonial-card">
+            <blockquote class="testimonial-quote">"We were overwhelmed by the potential inheritance tax bill until Castle Wealth mapped out a structured approach. Their team explained options we never knew existed, and the savings will make a real difference to what we leave our children."</blockquote>
+            <cite class="testimonial-author"><strong>Margaret &amp; Peter Thompson</strong>Retired Business Owners</cite>
+          </div>
+          <div class="testimonial-card">
+            <blockquote class="testimonial-quote">"As a growing business owner, my personal finances were tangled up with the company. Castle Wealth untangled it all, created a clear exit strategy, and positioned us far better for eventual sale. Best investment we made."</blockquote>
+            <cite class="testimonial-author"><strong>James Mitchell</strong>MD, Tech Services</cite>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="testimonial-slide">
+          <div class="testimonial-card">
+            <blockquote class="testimonial-quote">"What impressed us most wasn't the investment returns &mdash; it was the proactive approach. They spotted a tax opportunity we'd have missed, and their quarterly reviews keep us on track despite market chaos."</blockquote>
+            <cite class="testimonial-author"><strong>Amanda &amp; David Foster</strong>London Family Office</cite>
+          </div>
+          <div class="testimonial-card">
+            <blockquote class="testimonial-quote">"Our turnover improved dramatically after Castle Wealth restructured our benefits package. It wasn't expensive, but it felt premium to our team. That's the difference between generic and genuinely strategic."</blockquote>
+            <cite class="testimonial-author"><strong>Sarah Chen</strong>HR Director, Professional Services Firm</cite>
+          </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="testimonial-slide">
+          <div class="testimonial-card">
+            <blockquote class="testimonial-quote">"I had insurance gaps I didn't know about and investments that didn't match my timeline. Their clarity about what to keep, change, and add gave me real confidence."</blockquote>
+            <cite class="testimonial-author"><strong>Robert Williams</strong>Financial Professional</cite>
+          </div>
+          <div class="testimonial-card">
+            <blockquote class="testimonial-quote">"We were overwhelmed by the potential inheritance tax bill until Castle Wealth mapped out a structured approach. The savings will make a real difference to what we leave our children."</blockquote>
+            <cite class="testimonial-author"><strong>Margaret &amp; Peter Thompson</strong>Retired Business Owners</cite>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="prevBtn" aria-label="Previous testimonials">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="carousel-btn" id="nextBtn" aria-label="Next testimonials">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <div class="carousel-dots" id="carouselDots">
+          <button class="carousel-dot active" aria-label="Slide 1"></button>
+          <button class="carousel-dot" aria-label="Slide 2"></button>
+          <button class="carousel-dot" aria-label="Slide 3"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="process" id="contact">
+  <div class="container">
+    <div class="process-header reveal">
+      <span class="section-label">How We Work</span>
+      <h2>Three Steps to a Stronger Future</h2>
+      <p>A clear, structured approach that puts your goals at the centre of every decision.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="process-step-content">
+        <div class="step-number">01</div>
+        <h3>Understand Your Fortress</h3>
+        <p>We begin with a comprehensive discovery conversation. We listen more than we talk, because your unique circumstances &mdash; income, assets, family goals, business challenges &mdash; shape everything we recommend.</p>
+      </div>
+      <div class="process-step-image">
+        <img src="images/advisor-meeting.jpg" alt="Financial advisor in a discovery meeting with clients" loading="lazy">
+      </div>
+    </div>
+    <div class="process-step reveal">
+      <div class="process-step-content">
+        <div class="step-number">02</div>
+        <h3>Build Your Strategy</h3>
+        <p>Based on deep analysis, we create a clear, written plan. Not generic advice &mdash; specific recommendations tailored to your situation, with transparent rationale and projected outcomes.</p>
+      </div>
+      <div class="process-step-image">
+        <img src="images/investment-strategy.jpg" alt="Detailed investment strategy documents and analysis" loading="lazy">
+      </div>
+    </div>
+    <div class="process-step reveal">
+      <div class="process-step-content">
+        <div class="step-number">03</div>
+        <h3>Implement &amp; Protect</h3>
+        <p>We don't hand over a report and disappear. We guide implementation, coordinate with accountants and solicitors, and establish an ongoing service rhythm that keeps your plan aligned with your life.</p>
+      </div>
+      <div class="process-step-image">
+        <img src="images/wealth-protection.jpg" alt="Wealth protection and ongoing financial stewardship" loading="lazy">
+      </div>
+    </div>
+    <div class="process-cta reveal">
+      <p>Ready to build your fortress? Let's talk.</p>
+      <button class="btn-primary demo-trigger">See Demo</button>
+    </div>
+  </div>
+</section>
+
+<!-- Bottom CTA -->
+<section class="bottom-cta">
+  <div class="container">
+    <div class="bottom-cta-inner reveal">
+      <div>
+        <h2>Your Finances Shouldn't Feel Complicated</h2>
+        <p>Let's talk about building something stronger. Book a complimentary fortress review and discover how we serve clients like you.</p>
+      </div>
+      <div class="bottom-cta-action">
+        <button class="btn-gold demo-trigger">See Demo</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand"><strong>Castle</strong> Wealth</div>
+      <ul class="footer-links">
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="#" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z M2 9h4v12H2z M4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Demo built by <a href="https://dreamfree.co.uk" target="_blank" rel="noopener">Dreamfree</a> &middot; dreamfree.co.uk</p>
+      <p>Castle Wealth is a trading name. FCA authorised and regulated.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Demo Modal -->
+<div class="modal-overlay" id="demoModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <button class="modal-close" id="modalClose" aria-label="Close modal">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div id="modalForm">
+      <h2 id="modalTitle">Schedule Your Complimentary Fortress Review</h2>
+      <p>Discover how we build and protect financial futures for clients like you. No pressure, no sales pitch &mdash; just honest conversation about your situation and opportunities.</p>
+      <form id="demoForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="formName">Name *</label>
+            <input type="text" id="formName" name="name" required autocomplete="name" placeholder="Your full name">
+            <span class="error-msg">Please enter your name</span>
+          </div>
+          <div class="form-group">
+            <label for="formEmail">Email *</label>
+            <input type="email" id="formEmail" name="email" required autocomplete="email" placeholder="you@example.com">
+            <span class="error-msg">Please enter a valid email</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="formPhone">Phone</label>
+            <input type="tel" id="formPhone" name="phone" autocomplete="tel" placeholder="Optional">
+          </div>
+          <div class="form-group">
+            <label for="formCompany">Company / Background</label>
+            <input type="text" id="formCompany" name="company" placeholder="Optional">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="formMessage">Tell us about your situation</label>
+          <textarea id="formMessage" name="message" rows="3" placeholder="Optional &mdash; anything you'd like us to know before we speak"></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Request Demo</button>
+      </form>
+    </div>
+    <div class="form-success" id="formSuccess">
+      <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <h3>Thank You</h3>
+      <p>We've received your request. A member of the Castle Wealth team will be in touch within one working day.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ── Mobile Menu ── */
+  var hamburger = document.querySelector('.hamburger');
+  var navLinks = document.querySelector('.nav-links');
+  hamburger.addEventListener('click', function(){
+    var isOpen = navLinks.classList.toggle('open');
+    hamburger.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded','false');
+    });
+  });
+
+  /* ── Smooth Scroll ── */
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor){
+    anchor.addEventListener('click', function(e){
+      var target = document.querySelector(this.getAttribute('href'));
+      if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
+    });
+  });
+
+  /* ── Scroll Spy ── */
+  var sections = document.querySelectorAll('section[id]');
+  var navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
+  function updateSpy(){
+    var scrollY = window.scrollY + 120;
+    sections.forEach(function(sec){
+      var top = sec.offsetTop, h = sec.offsetHeight, id = sec.getAttribute('id');
+      if(scrollY >= top && scrollY < top + h){
+        navAnchors.forEach(function(a){ a.classList.remove('active'); });
+        var active = document.querySelector('.nav-links a[href="#'+id+'"]');
+        if(active) active.classList.add('active');
+      }
+    });
+  }
+  window.addEventListener('scroll', updateSpy, {passive:true});
+
+  /* ── Demo Modal ── */
+  var modal = document.getElementById('demoModal');
+  var modalClose = document.getElementById('modalClose');
+  var triggers = document.querySelectorAll('.demo-trigger');
+  function openModal(){ modal.classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeModal(){ modal.classList.remove('open'); document.body.style.overflow=''; }
+  triggers.forEach(function(t){ t.addEventListener('click', function(e){ e.preventDefault(); openModal(); }); });
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+
+  /* ── Form Validation ── */
+  var form = document.getElementById('demoForm');
+  var formWrap = document.getElementById('modalForm');
+  var formSuccess = document.getElementById('formSuccess');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var valid = true;
+    var name = document.getElementById('formName');
+    var email = document.getElementById('formEmail');
+    // Reset
+    form.querySelectorAll('.form-group').forEach(function(g){ g.classList.remove('has-error'); });
+    if(!name.value.trim()){ name.closest('.form-group').classList.add('has-error'); valid=false; }
+    if(!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)){ email.closest('.form-group').classList.add('has-error'); valid=false; }
+    if(valid){
+      formWrap.querySelector('form').style.display='none';
+      formWrap.querySelector('h2').style.display='none';
+      formWrap.querySelector('p').style.display='none';
+      formSuccess.style.display='block';
+    }
+  });
+
+  /* ── Testimonial Carousel ── */
+  var track = document.getElementById('testimonialTrack');
+  var dots = document.querySelectorAll('.carousel-dot');
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
+  var currentSlide = 0;
+  var totalSlides = track.children.length;
+  var autoInterval;
+
+  function goToSlide(n){
+    currentSlide = ((n % totalSlides) + totalSlides) % totalSlides;
+    track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+    dots.forEach(function(d,i){ d.classList.toggle('active', i === currentSlide); });
+  }
+  function nextSlide(){ goToSlide(currentSlide + 1); }
+  function prevSlide(){ goToSlide(currentSlide - 1); }
+  function startAuto(){ autoInterval = setInterval(nextSlide, 6000); }
+  function resetAuto(){ clearInterval(autoInterval); startAuto(); }
+
+  nextBtn.addEventListener('click', function(){ nextSlide(); resetAuto(); });
+  prevBtn.addEventListener('click', function(){ prevSlide(); resetAuto(); });
+  dots.forEach(function(dot, i){ dot.addEventListener('click', function(){ goToSlide(i); resetAuto(); }); });
+  startAuto();
+
+  /* Touch/Swipe */
+  var touchStartX = 0;
+  track.addEventListener('touchstart', function(e){ touchStartX = e.changedTouches[0].screenX; }, {passive:true});
+  track.addEventListener('touchend', function(e){
+    var diff = touchStartX - e.changedTouches[0].screenX;
+    if(Math.abs(diff) > 50){ diff > 0 ? nextSlide() : prevSlide(); resetAuto(); }
+  }, {passive:true});
+
+  /* ── Scroll Reveal ── */
+  var reveals = document.querySelectorAll('.reveal');
+  var revealObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        revealObs.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+  reveals.forEach(function(el){ revealObs.observe(el); });
+
+})();
+</script>
+
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){
+  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window,document,"clarity","script","PLACEHOLDER_PROJECT_ID");
+</script>
+
+</body>
+</html>
