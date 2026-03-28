@@ -513,6 +513,12 @@ img{max-width:100%;height:auto;display:block}
   .footer-inner{flex-direction:column;text-align:center}
   .footer-bottom{flex-direction:column;text-align:center}
 }
+
+/* ---- LAPTOP SCREEN OPTIMISATION (DRE-17) ---- */
+@media (min-width: 769px) and (max-width: 1440px) {
+  .hero { min-height: min(78dvh, 720px); }
+  .services, .why, .testimonials, .process, .stakes, .success, .final-cta { padding: 72px 0; }
+}
 </style>
 </head>
 <body>
